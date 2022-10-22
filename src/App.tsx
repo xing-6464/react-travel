@@ -7,7 +7,8 @@ import {
   Footer,
   SideMenu,
   Carousel,
-  ProductCollection
+  ProductCollection,
+  BusinessPartners
 } from './components'
 import styles from './App.module.css'
 import { productList1, productList2, productList3 } from './mockups'
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           products={productList3}
         />
       </div>
+      <BusinessPartners />
       <Footer />
     </div>
   );
