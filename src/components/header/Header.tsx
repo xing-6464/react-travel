@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
 
@@ -9,8 +9,6 @@ import styles from './Header.module.css'
 
 export const Header: React.FC = () => {
   const navigat = useNavigate()
-  const location = useLocation()
-  const params = useParams()
   
   return (
     <div className={styles['App-header']}>
