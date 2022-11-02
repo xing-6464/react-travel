@@ -9,7 +9,7 @@ import {
   Carousel,
   ProductCollection,
   BusinessPartners
-} from '../../components'
+} from '../../components/index'
 import styles from './HomePage.module.css'
 import { productList1, productList2, productList3 } from './mockups'
 import sideImage from '../../assets/images/sider_2019_12-09.png'
