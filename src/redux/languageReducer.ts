@@ -1,3 +1,5 @@
+import i18next from 'i18next'
+
 export interface LanguageState {
   language: 'en' | 'zh';
   languageList: { name: string, code: string }[];
@@ -14,6 +16,7 @@ const defaultState: LanguageState = {
 const languageReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'change_language':
+      i18next.changeLanguage(action.payload) // 不标准
       return { ...state, language: action.payload }
 
     case 'add_language':
@@ -24,7 +27,7 @@ const languageReducer = (state = defaultState, action) => {
 
     default:
       return state
-      
+
   }
 }
 
