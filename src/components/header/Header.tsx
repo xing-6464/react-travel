@@ -35,8 +35,8 @@ export const Header: React.FC = () => {
             语言
           </Dropdown.Button>
           <Button.Group className={styles['button-group']}>
-            <Button onClick={() => navigat('/signin')}>注册</Button>
-            <Button onClick={() => navigat('/register')}>登录</Button>
+            <Button onClick={() => navigat('/register')}>注册</Button>
+            <Button onClick={() => navigat('/signin')}>登录</Button>
           </Button.Group>
         </div>
       </div>
