@@ -16,9 +16,9 @@ const defaultState: LanguageState = {
 }
 
 const languageReducer = (state = defaultState, action: LanguageActionTypes) => {
+  
   switch (action.type) {
     case CHANGE_LANGUAGE:
-      i18next.changeLanguage(action.payload) // 不标准
       return { ...state, language: action.payload }
 
     case ADD_LANGUAGE:
