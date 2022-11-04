@@ -4,13 +4,17 @@ import thunk from 'redux-thunk'
 
 import languageReducer from './language/languageReducer'
 import recommendProductsReducer from './recommendProducts/recommendProductsReducer'
+import {
+  actionLog,
+  changeLanguage
+} from './middlewares/index'
 
 const rootReducer = combineReducers({
   language: languageReducer,
   recommendProducts: recommendProductsReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk, actionLog, changeLanguage))
 
 export type RootState = ReturnType<typeof store.getState>
 
