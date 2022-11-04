@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Row, Col, Typography, Spin } from 'antd'
 import { withTranslation, WithTranslation } from 'react-i18next'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 import {
@@ -18,11 +17,7 @@ import sideImage from '../../assets/images/sider_2019_12-09.png'
 import sideImage2 from '../../assets/images/sider_2019_02-04.png'
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
 import { RootState } from '../../redux/store'
-import {
-  fetchRecommendProductsFailActionCreator,
-  fetchRecommendProductsStartActionCreator,
-  fetchRecommendProductsSuccessActionCreator
-} from '../../redux/recommendProducts/recommendProductsActions'
+import { giveMeDataActionCreator } from '../../redux/recommendProducts/recommendProductsActions'
 
 
 const mapStateToProps = (state: RootState) => {
@@ -35,14 +30,8 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchStart: () => {
-      dispatch(fetchRecommendProductsStartActionCreator())
-    },
-    fetchSuccess: (data) => {
-      dispatch(fetchRecommendProductsSuccessActionCreator(data))
-    },
-    fetchFail: (error) => {
-      dispatch(fetchRecommendProductsFailActionCreator(error))
+    giveMeData: () => {
+      dispatch(giveMeDataActionCreator())
     }
   }
 }
@@ -53,17 +42,8 @@ type PropsType = WithTranslation
 
 class HomePageComponent extends React.Component<PropsType> {
 
-  async componentDidMount() {
-    this.props.fetchStart()
-    try {
-      const { data } = await axios.get('http://123.56.149.216:8080/api/productCollections')
-      this.props.fetchSuccess(data)
-    } catch (error) {
-      if (error instanceof Error) {
-        this.props.fetchFail(error.message)
-      }
-    }
-
+  componentDidMount () {
+    this.props.giveMeData()
   }
 
   render (): JSX.Element {
