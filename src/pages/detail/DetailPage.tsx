@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'antd'
+import { useDispatch } from 'react-redux'
 
 import styles from './DetailPage.module.css'
 import {
@@ -11,6 +12,8 @@ import {
   ProductComments
 } from '../../components'
 import { commentMockData } from './mockup'
+import { useSelector } from '../../redux/hooks'
+import { productDetailSlice } from '../../redux/productDetail/slice'
 
 type MatchParams = {
   touristRouteId: string,
@@ -20,20 +23,26 @@ const { RangePicker } = DatePicker
 
 export const DetailPage: React.FC = () => {
   const { touristRouteId } = useParams<MatchParams>()
-  const [loading, setLoading] = useState<boolean>(true)
-  const [product, setProduct] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
+  // const [loading, setLoading] = useState<boolean>(true)
+  // const [product, setProduct] = useState<any>(null)
+  // const [error, setError] = useState<string | null>(null)
+
+  // 获取redux状态
+  const loading = useSelector(state => state.productDetail.loading)
+  const product = useSelector(state => state.productDetail.data)
+  const error = useSelector(state => state.productDetail.error)
+
+  // 获取redux的dispatch函数
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
+      dispatch(productDetailSlice.actions.fetchStart())
       try {
         const { data } = await axios.get(`http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`)
-        setProduct(data)
-        setLoading(false)
+        dispatch(productDetailSlice.actions.fetchSuccess(data))
       } catch (e) {
-        setError(e instanceof Error ? e.message : 'error')
-        setLoading(false)
+        dispatch(productDetailSlice.actions.fetchFail(e))
       }
     }
 
