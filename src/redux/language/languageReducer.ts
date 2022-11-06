@@ -1,5 +1,3 @@
-import i18next from 'i18next'
-
 import { CHANGE_LANGUAGE, ADD_LANGUAGE, LanguageActionTypes } from './languageActions'
 
 export interface LanguageState {
