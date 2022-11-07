@@ -6,7 +6,8 @@ import {
   HomePage,
   SigninPage,
   RegisterPage,
-  DetailPage
+  DetailPage,
+  SearchPage
 } from './pages';
 
 const App: React.FC = () => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
           <Route path='/signin' element={<SigninPage />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/detail/:touristRouteId' element={<DetailPage />} />
+          <Route path='/serch/:keywords' element={<SearchPage />} />
           <Route path='*' element={<h1>404 not found</h1>} />
         </Routes>
       </BrowserRouter>
