@@ -1,8 +1,6 @@
 import React,{ useEffect } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'antd'
-import { useDispatch } from 'react-redux'
 
 import styles from './DetailPage.module.css'
 import {
@@ -12,8 +10,8 @@ import {
   ProductComments
 } from '../../components'
 import { commentMockData } from './mockup'
-import { useSelector } from '../../redux/hooks'
-import { productDetailSlice } from '../../redux/productDetail/slice'
+import { useSelector, useAppDispatch } from '../../redux/hooks'
+import { productDetailSlice, getProductDetail } from '../../redux/productDetail/slice'
 
 type MatchParams = {
   touristRouteId: string,
@@ -33,20 +31,12 @@ export const DetailPage: React.FC = () => {
   const error = useSelector(state => state.productDetail.error)
 
   // 获取redux的dispatch函数
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(productDetailSlice.actions.fetchStart())
-      try {
-        const { data } = await axios.get(`http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`)
-        dispatch(productDetailSlice.actions.fetchSuccess(data))
-      } catch (e) {
-        dispatch(productDetailSlice.actions.fetchFail(e))
-      }
+    if (touristRouteId) {
+      dispatch(getProductDetail(touristRouteId))
     }
-
-    fetchData()
   }, [])
 
   if (loading) {
