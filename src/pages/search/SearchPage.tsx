@@ -14,7 +14,7 @@ type MatchParams = {
 }
 
 export const SearchPage: React.FC = () => {
-  const params = useParams<MatchParams>()
+  const { keywords } = useParams<MatchParams>()
 
   return <>
     <Header />
