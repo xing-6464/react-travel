@@ -4,14 +4,13 @@ import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'a
 
 import styles from './DetailPage.module.css'
 import {
-  Header,
-  Footer,
   ProductIntro,
   ProductComments
 } from '../../components'
+import { MainLayout } from '../../layouts/mainLayout'
 import { commentMockData } from './mockup'
 import { useSelector, useAppDispatch } from '../../redux/hooks'
-import { productDetailSlice, getProductDetail } from '../../redux/productDetail/slice'
+import { getProductDetail } from '../../redux/productDetail/slice'
 
 type MatchParams = {
   touristRouteId: string,
@@ -56,8 +55,7 @@ export const DetailPage: React.FC = () => {
     return <h1>网站出错: {error}</h1>
   }
 
-  return <>
-    <Header />
+  return <MainLayout>
     <div className={styles['page-content']}>
       {/* 产品简介 与 日期选择 */}
       <div className={styles['product-intro-container']}>
@@ -129,6 +127,5 @@ export const DetailPage: React.FC = () => {
         </div>
       </div>
     </div>
-    <Footer />
-  </>
+  </MainLayout>
 }

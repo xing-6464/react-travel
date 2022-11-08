@@ -11,6 +11,7 @@ import {
   FilterArea,
   ProductList
 } from '../../components'
+import { MainLayout } from '../../layouts/mainLayout'
 
 type MatchParams = {
   keywords: string,
@@ -59,9 +60,8 @@ export const SearchPage: React.FC = () => {
     return <div>网站出错: {error}</div>
   }
 
-  return <>
-    <Header />
-    <div className={styles['page-content']}>
+  return (
+    <MainLayout>
       {/* 分类过滤器 */}
       <div className={styles['product-list-container']}>
         <FilterArea />
@@ -74,7 +74,6 @@ export const SearchPage: React.FC = () => {
           onPageChange={onPageChange}
         />
       </div>
-    </div>
-    <Footer />
-  </>
+    </MainLayout>
+  )
 }

@@ -12,6 +12,7 @@ import {
   ProductCollection,
   BusinessPartners
 } from '../../components/index'
+import { MainLayout } from '../../layouts/mainLayout'
 import styles from './HomePage.module.css'
 import sideImage from '../../assets/images/sider_2019_12-09.png'
 import sideImage2 from '../../assets/images/sider_2019_02-04.png'
@@ -67,7 +68,7 @@ class HomePageComponent extends React.Component<PropsType> {
     }
 
     return (
-      <>
+      <MainLayout>
         <Header />
         {/* 页面的content */}
         <div className={styles['page-content']}>
@@ -97,7 +98,7 @@ class HomePageComponent extends React.Component<PropsType> {
         </div>
         <BusinessPartners />
         <Footer />
-      </>
+      </MainLayout>
     )
   }
 }
