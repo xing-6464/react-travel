@@ -3,9 +3,9 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input } from 'antd'
 
-import styles from './RegisterForm.module.css'
+import styles from './SigninForm.module.css'
 
-export const RegisterForm: React.FC = () => {
+export const SigninForm: React.FC = () => {
   const navigate = useNavigate()
 
   const onFinish = async (values: any) => {
@@ -33,7 +33,7 @@ export const RegisterForm: React.FC = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
-      className={styles['register-form']}
+      className={styles['signin-form']}
     >
       <Form.Item
         label="用户名"
@@ -47,25 +47,6 @@ export const RegisterForm: React.FC = () => {
         label="密码"
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        label="确认密码"
-        name="confirm"
-        hasFeedback
-        rules={[
-          { required: true, message: 'Please input your confirm password!' },
-          (({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve()
-              }
-              return Promise.reject('密码确认不一致')
-            }
-          }))
-        ]}
       >
         <Input.Password />
       </Form.Item>
