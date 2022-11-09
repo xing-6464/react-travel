@@ -2,11 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import 'antd/dist/antd.min.css'
+import { Spin } from 'antd'
 import './i18n/configs'
 import { Provider } from 'react-redux'
 import axios from 'axios'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import store from './redux/store'
+import rootStore from './redux/store'
 import App from './App'
 import './index.css'
 
@@ -17,8 +19,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={rootStore.store}>
+      <PersistGate loading={<Spin />} persistor={rootStore.persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

@@ -51,7 +51,6 @@ export const Header: React.FC = () => {
   const onLogout = () => {
     dispatch(userSlice.actions.logout())
     navigat('/')
-    window.location.reload()
   }
 
   return (
