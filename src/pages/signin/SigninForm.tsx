@@ -1,24 +1,31 @@
-import React from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input } from 'antd'
 
 import styles from './SigninForm.module.css'
+import { useSelector, useAppDispatch } from '../../redux/hooks'
+import { signIn } from '../../redux/user/slice'
 
 export const SigninForm: React.FC = () => {
+  const loading = useSelector(state => state.user.loading)
+  const jwt = useSelector(state => state.user.token)
+  const error = useSelector(state => state.user.error)
+
   const navigate = useNavigate()
+  
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (jwt !== null) {
+      navigate('/')
+    }
+  }, [jwt])
 
   const onFinish = async (values: any) => {
-    try {
-      await axios.post('http://123.56.149.216:8080/auth/register',{
-        email: values.username,
-        password: values.password,
-        confirmPassword: values.confirm
-      })
-      navigate('/signIn/')
-    } catch (error) {
-      alert('注册失败!')
-    }
+    dispatch(signIn({
+      email: values.username,
+      password: values.password
+    }))
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -56,7 +63,7 @@ export const SigninForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loading}>
           提交
         </Button>
       </Form.Item>
