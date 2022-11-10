@@ -6,8 +6,6 @@ import styles from './SearchPage.module.css'
 import { searchProduct } from '../../redux/productSearch/slice'
 import { useSelector, useAppDispatch } from '../../redux/hooks'
 import {
-  Header,
-  Footer,
   FilterArea,
   ProductList
 } from '../../components'

@@ -5,15 +5,12 @@ import { withTranslation, WithTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 
 import {
-  Header,
-  Footer,
   SideMenu,
   Carousel,
   ProductCollection,
   BusinessPartners
 } from '../../components/index'
 import { MainLayout } from '../../layouts/mainLayout'
-import styles from './HomePage.module.css'
 import sideImage from '../../assets/images/sider_2019_12-09.png'
 import sideImage2 from '../../assets/images/sider_2019_02-04.png'
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
