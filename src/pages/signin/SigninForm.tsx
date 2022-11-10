@@ -9,7 +9,6 @@ import { signIn } from '../../redux/user/slice'
 export const SigninForm: React.FC = () => {
   const loading = useSelector(state => state.user.loading)
   const jwt = useSelector(state => state.user.token)
-  const error = useSelector(state => state.user.error)
 
   const navigate = useNavigate()
   
