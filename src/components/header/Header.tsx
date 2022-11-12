@@ -26,6 +26,10 @@ export const Header: React.FC = () => {
   // redux store
   const language = useSelector(state => state.language.language)
   const languageList = useSelector(state => state.language.languageList)
+
+  const shoppingCartItems = useSelector(state => state.shoppingCart.items)
+  const shoppingCartLoading = useSelector(state => state.shoppingCart.loading)
+
   const dispatch = useAppDispatch()
 
   const jwt = useSelector(state => state.user.token)
@@ -81,7 +85,12 @@ export const Header: React.FC = () => {
                 <Typography.Text strong>
                   { username }
                 </Typography.Text>
-                <Button onClick={() => navigat('/shoppinCart')}>{ t('header.shoppingCart') }</Button>
+                <Button
+                  loading={shoppingCartLoading}
+                  onClick={() => navigat('/shoppingCart')}
+                >
+                  { t('header.shoppingCart') } ({ shoppingCartItems.length })
+                </Button>
                 <Button onClick={onLogout}>{ t('header.signOut')}</Button>
               </Button.Group> 
             ) : (

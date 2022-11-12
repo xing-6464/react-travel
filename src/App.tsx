@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import styles from './App.module.css'
@@ -10,7 +10,8 @@ import {
   SearchPage,
   ShoppingCart
 } from './pages'
-import { useSelector } from './redux/hooks'
+import { useAppDispatch, useSelector } from './redux/hooks'
+import { getShoppingCart } from './redux/shoppingCart/slice'
 
 const PrivateRoute: React.FC<{ children }> = ({ children }) => {
   const jwt = useSelector(state => state.user.token)
@@ -18,6 +19,14 @@ const PrivateRoute: React.FC<{ children }> = ({ children }) => {
 }
 
 const App: React.FC = () => {
+  const jwt = useSelector(state => state.user.token)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getShoppingCart(jwt))
+    }
+  }, [jwt])
   
   return (
     <div className={styles.App}>
