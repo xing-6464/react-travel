@@ -16,7 +16,7 @@ axios.defaults.headers['x-icode'] = '66AD1A8D605F606C'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
-);
+)
 root.render(
   <React.StrictMode>
     <Provider store={rootStore.store}>

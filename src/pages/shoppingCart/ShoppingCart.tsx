@@ -9,7 +9,7 @@ import { ProductList, PaymentCard } from '../../components'
 import { useSelector, useAppDispatch } from '../../redux/hooks'
 import { clearShoppingCartItem, checkout } from '../../redux/shoppingCart/slice'
 
-export const ShoppingCart: React.FC = (props) => {
+export const ShoppingCartPage: React.FC = (props) => {
 
   const jwt = useSelector(s => s.user.token) as string
   const loading = useSelector(s => s.shoppingCart.loading)
