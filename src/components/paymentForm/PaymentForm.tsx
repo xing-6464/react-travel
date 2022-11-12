@@ -1,5 +1,5 @@
 import React from 'react'
-import { PaymentInputsWrapper, usePaymentInputs } from 'react-payment-inputs'
+import { usePaymentInputs, PaymentInputsWrapper } from 'react-payment-inputs'
 import images from 'react-payment-inputs/images'
 import { Card } from 'antd'
 
@@ -12,7 +12,7 @@ export const PaymentForm: React.FC = () => {
     getCardNumberProps,
     getExpiryDateProps,
     getCVCProps,
-  } = usePaymentInputs();
+  } = usePaymentInputs()
 
   return (
     <Card
