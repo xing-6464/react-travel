@@ -1,14 +1,5 @@
-.App-header {
+.app-header {
   background-color: white !important;
-}
-
-.main-header {
-  background-color: white !important;
-  height: 60px;
-  line-height: 60px;
-  width: 88%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .top-header {
@@ -24,13 +15,22 @@
   width: 88%;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button-group {
-  float: right;
   margin-top: 5px;
 }
 
+.main-header {
+  background-color: white !important;
+  height: 60px;
+  line-height: 60px;
+  width: 88%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .App-logo {
   height: 60px;

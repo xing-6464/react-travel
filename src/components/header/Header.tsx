@@ -62,48 +62,52 @@ export const Header: React.FC = () => {
       {/* top-header */}
       <div className={styles['top-header']}>
         <div className={styles.inner}>
-          <Typography.Text>{ t('header.slogan') }</Typography.Text>
-          <Dropdown.Button
-            style={{ marginLeft: 15 }}
-            overlay={
-              <Menu onClick={menuClickHandler}
-                items={[
-                  ...languageList.map( l => {
-                    return { key: l.code, label: l.name }
-                  }),
-                  { key: 'new', label: t('header.add_new_language') }
-                ]}
-              />
+          <div style={{ display: 'flex' }}>
+            <Typography.Text>{ t('header.slogan') }</Typography.Text>
+            <Dropdown.Button
+              style={{ marginLeft: 15, display: 'block', width: 'auto' }}
+              overlay={
+                <Menu onClick={menuClickHandler}
+                  items={[
+                    ...languageList.map( l => {
+                      return { key: l.code, label: l.name }
+                    }),
+                    { key: 'new', label: t('header.add_new_language') }
+                  ]}
+                />
+              }
+              icon={<GlobalOutlined />}
+            >
+              { language === 'zh' ? '中文' : 'English' }
+            </Dropdown.Button>
+          </div>
+          <div>
+            { jwt ? (
+                <Button.Group className={styles['button-group']}>
+                  <span>{ t('header.welcome') }</span>
+                  <Typography.Text strong>
+                    { username }
+                  </Typography.Text>
+                  <Button
+                    loading={shoppingCartLoading}
+                    onClick={() => navigat('/shoppingCart')}
+                  >
+                    { t('header.shoppingCart') } ({ shoppingCartItems.length })
+                  </Button>
+                  <Button onClick={onLogout}>{ t('header.signOut')}</Button>
+                </Button.Group> 
+              ) : (
+                <Button.Group className={styles['button-group']}>
+                  <Button onClick={() => navigat('/register')}>
+                    { t('header.register') }
+                  </Button>
+                  <Button onClick={() => navigat('/signin')}>
+                    { t('header.signin') }
+                  </Button>
+                </Button.Group>
+              )
             }
-            icon={<GlobalOutlined />}
-          >
-            { language === 'zh' ? '中文' : 'English' }
-          </Dropdown.Button>
-          { jwt ? (
-              <Button.Group className={styles['button-group']}>
-                <span>{ t('header.welcome') }</span>
-                <Typography.Text strong>
-                  { username }
-                </Typography.Text>
-                <Button
-                  loading={shoppingCartLoading}
-                  onClick={() => navigat('/shoppingCart')}
-                >
-                  { t('header.shoppingCart') } ({ shoppingCartItems.length })
-                </Button>
-                <Button onClick={onLogout}>{ t('header.signOut')}</Button>
-              </Button.Group> 
-            ) : (
-              <Button.Group className={styles['button-group']}>
-                <Button onClick={() => navigat('/register')}>
-                  { t('header.register') }
-                </Button>
-                <Button onClick={() => navigat('/signin')}>
-                  { t('header.signin') }
-                </Button>
-              </Button.Group>
-            )
-          }
+          </div>
         </div>
       </div>
       <Layout.Header className={styles['main-header']}>
