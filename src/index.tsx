@@ -12,7 +12,7 @@ import rootStore from './redux/store'
 import App from './App'
 import './index.css'
 
-axios.defaults.headers['x-icode'] = '20D374DB8EF53724'
+axios.defaults.headers['x-icode'] = 'DD006AA957181E41'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
